@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cardBox{
+            border: 2px solid;
+            width: 200px;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 1px 2px 1px rgb(116, 110, 110);
+        }
+        img{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>products....</h1>
+    <div id="display"></div>
+
+
+
+
+    <script>
+        let baseUrl = "https://dummyjson.com";
+        let display = document.getElementById('display')
+
+        const getAllProducts = async ()=>{
+            try {
+                let response = await fetch(`${baseUrl}/products`);
+                let data = await response.json();
+                let allProducts = data.allProducts
+                console.log(allProducts);
+                displayProducts(allProducts)
+                
+            } catch (error) {
+                console.log(error.message);
+                
+            }
+        }
+
+        function dispayProducts(products) {
+            
+            products.forEach(product => {
+                let card = document.createElement('div');
+
+                card.classList.add('cardBox')
+                card.innerHTML = `
+
+                               <a href=""><img src="${product.thumbnail}" alt="" class="img"></a>
+                                <h1>${product.title}</h1>
+                                <p>
+                                    <span class= 'short'>${product.description.slice(0, 15)}...</span>
+                                    <span class= 'long'>${product.description}</span>
+                                </p>                
+                                <h3>${product.category}</h3>
+                                <h3>${product.price}</h3>
+                                <p>${product.rating}</p>
+                                <button class= 'btn'>Read More</button>
+                `
+                display.appendChild(card);
+
+
+                let getShortDescription = card.querySelector('.short')
+                let getLongDescription = card.querySelector('.long')
+                let btn = card.querySelector('.btn')
+
+
+                btn.addEventListener("click", ()=>{
+                    if (btn.textContent == "Read More") {
+                        btn.textContent = 'Read Less'
+                        getShortDescription.style.display = "block"
+                        getLongDescription.style.display = "none"
+                    } else {
+                        btn.textContent = 'Read More'
+                        getShortDescription.style.display = "block"
+                        getLongDescription.style.display = "none"
+                    }
+                })
+            });
+        }
+        getAllProducts();
+    </script>
+</body>
+</html>

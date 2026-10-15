@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="display">Welcome To Local Storage Class</h1>
+</body>
+<script>
+    //local storage can only store string 
+    //setItem- to store data in your local storage
+    localStorage.setItem("name", "charles")
+    console.log(localStorage.getItem("name"));
+    let students = ["sola", "ope", "grace"];
+    console.log(students);
+    
+    localStorage.setItem("names", JSON.stringify(students));
+    console.log(localStorage.getItem("names"));
+    let result = JSON.parse(localStorage.getItem('names'));
+    console.log(result[0]);
+    
+    // console.log(localStorage.getItem(students[1]));
+    //create and object store it in ur local storage
+    
+
+    let obj = {
+        name: "bola",
+        age:12,
+        gender:"male"
+    }
+    localStorage.setItem('names', JSON.stringify(obj));
+    
+</script>
+</html>

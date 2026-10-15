@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        let studentOne = {
+            name: "Olaoluwa",
+            age: 12,
+            gender: "male",
+            complexion: "light-dark",
+            height: "1.7cm",
+            occupation: "Web Development",
+            cancode(){
+                console.log(`${this.name} can code`);
+                
+            }
+        }
+
+        console.log(studentOne);
+        console.log(studentOne.gender);
+        studentOne.cancode();
+        
+        
+        class Student {
+            constructor(name, age, gender, status, complexion, matricNumber) {
+                this.name = name
+                this.age = age
+                this.gender = gender
+                this.status = status
+                this.complexion = complexion
+                this.matricNumber = matricNumber
+            }
+            haveMatricNo(){
+                console.log(`${this.name} has a matric number ${this.matricNumber}`);
+                
+            }
+        }
+        class Juniorstudent extends Student{
+             constructor(name, age, gender, status, complexion, matricNumber){
+                super(name, age, gender, status, complexion, matricNumber)
+            }
+            haveMatricNo(){
+                console.log(`${this.name} is ${this.complexion} in comlexion`);
+                 
+            }
+
+        }
+
+        //Abstraction 
+        class Bankaccount{
+            #balance = 0;
+            constructor(){
+
+            }
+            deposit(amount){
+                console.log(`Your balance is $${this.#balance += amount}`);
+                
+            }
+        }
+        const user1 = new Bankaccount();
+        user1.deposit(1000)
+
+        //polymorphism - poly- means many whike morphism- means forms
+        class Human{
+            constructor(name, age, gender){
+                this.name = name 
+                this.age = age
+                this.gender = gender
+            }
+            thinkingLevel(){
+                console.log(`High level thinkingh`);
+                
+            }
+        }
+        class Topeperson extends Human{
+            thinkingLevel(){
+                console.log(`Intermediate level thinking`);
+                
+            }
+        }
+        const personOne = new Topeperson("Tope", 12, "male")
+        console.log(personOne);
+
+        const personTwo = new Topeperson("Victor", 10, "male")
+        console.log(personTwo);
+        
+        const personThree = new Topeperson("Favour", 15, "male")
+        console.log(personThree);
+        
+
+        const firstStudent = new Student("Olaoluwa", 12, "male", "single", "light-dark",26777)
+
+        const secondStudent = new Student("sade", 22, "female", "single", "light", 24567)
+
+        const firstJunior = new Juniorstudent("ola", 13, "male", "single", "dark", 25742)
+        console.log(firstStudent);
+        console.log(secondStudent);
+        firstStudent.haveMatricNo();
+        console.log(firstJunior);
+        firstJunior.haveMatricNo();
+        
+
+        //
+        
+        
+    </script>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>

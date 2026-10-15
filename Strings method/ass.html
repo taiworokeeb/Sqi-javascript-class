@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="input" placeholder="Add your name">
+    <button onclick="addTask()">Add</button>
+    <div id="display"></div>
+
+
+    <script>
+        let input = document.getElementById('input');
+        let result = document.getElementById('display')
+        let arr = [];
+        function addTask() {
+            let user = input.value
+            arr.push(user);
+            console.log(arr);
+            input.value = "";
+            display()
+            
+        }
+        
+        function display() {
+            result.innerHTML = ''
+            for (let i = 0; i < arr.length; i++) {
+                result.innerHTML+= `<p>${i + 1}. ${arr[i]} <button onclick= "deleteTask()">Delete</button></p>`
+                // console.log(result);
+                
+            }
+        }
+        function deleteTask(index) {
+            // alert()
+            arr.splice(index, 1);
+            display()
+        }
+        
+    </script>
+</body>
+</html>

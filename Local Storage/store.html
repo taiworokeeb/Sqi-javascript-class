@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="display"></div>
+</body>
+<script>
+    let display = document.getElementById('display');
+    console.log(localStorage.getItem("names"));
+    let result = JSON.parse(localStorage.getItem("names"));
+    // display.innerHTML +=  `
+    //                         <h3>${result.name}</h3>
+    //                         <h3>${result.age}</h3>
+    //                         <h3>${result.gender}</h3>
+    //                         `
+    display.innerHTML +=  `<h3>${result.name}</h3>`
+    
+</script>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+
+        // Array destructuring
+        let names = ['sola', 'tope', 'ajayi']
+
+        let[first, second, third] = names
+        console.log(first);
+        console.log(second);
+        console.log(third);
+
+        //skip 
+        let userName = ['sola', 'tope', 'ajayi']
+        let[firsts,, thirds] = userName
+        console.log(firsts);
+        console.log(thirds);
+        
+        // object destructuring
+        let person = {myname: 'tolu', age: 12, gender: 'male'};
+        let {age, gender: mygender, myname} = person
+        console.log(age);
+        console.log(myname);
+        console.log(mygender);
+        
+        // spread and rest(...)
+        let myNums = [23, 67, 44]
+        let output = [...myNums]
+        console.log(output);
+        
+
+        let nums = [1, 2, 3, 4, 5, 6, 7, 8]
+        let [a, b, c, , , ...remaining] = nums
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        console.log(remaining);
+
+        let one = [3, 5, 7];
+
+        let [...hi] = one
+        let two = [2, 9, 8, ...hi]
+        console.log(two);
+
+        let obj = {name: 'ope', age: 23, gender: 'male'}
+        let {name, ...rest} = obj
+        console.log(rest);
+        
+        // Reduce methods() - this is an array method
+        let figures = [2, 8, 5, 4, 6, 1];
+        let result = figures.reduce((summation, currentValue)=>{
+            return summation + currentValue
+        }, 0)
+        console.log(result);
+        
+        
+    </script>
+</body>
+</html>

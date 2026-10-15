@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <title>Document</title>
+</head>
+<style>
+    #closed{
+        display: none;
+    }
+    i{
+        /* background-color: red; */
+        position: relative;
+        margin-left: -30px;
+        margin-top: 5px;
+    }
+</style>
+<body>
+    <button onclick="clickMe()" id="">Click me</button>
+    <div>
+        <input type="password" name="" id="password">
+        <i  onclick="closeText()" class="fa-duotone fa-regular fa-eye" id="closed"></i>
+        <i  onclick="showText()"class="fa-regular fa-eye-slash" id="open"></i>
+    </div>
+    <script>
+        function clickMe()
+        {
+            document.body.style.backgroundColor ="purple"
+        }
+        let password = document.getElementById("password");
+        let open = document.getElementById("open");
+        let closed = document.getElementById("closed");
+
+        function showText(){
+            password.setAttribute("type", "text");
+            open.style.display = "none";
+            closed.style.display = "inline-block";
+        }
+        function closeText(){
+            password.setAttribute("type", "password");
+            open.style.display = "inline-block";
+            closed.style.display = "none";
+        }
+        // function showText() {
+        //     if (password.type == "password") {
+        //         password.type = "text"
+        //         open.style.display = "inline-block"
+        //         closed.style.display = "none"
+        //     } else{
+        //         password.type = "password"
+        //         open.style.display = "none"
+        //         closed.style.display = "inline-block"
+        //     }
+        // }
+        //         function closeText() {
+        //     if (password.type == "text") {
+        //         password.type = "password"
+        //         open.style.display = "none"
+        //         closed.style.display = "inline-block"
+        //     } else{
+        //         password.type = "text"
+        //         open.style.display = "inline-block"
+        //         closed.style.display = "none"
+        //     }
+        // }
+    </script>
+</body>
+</html>

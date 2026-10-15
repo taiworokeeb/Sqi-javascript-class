@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="display"></div>
+
+</body>
+<script>
+    //HOF- is a functuin that takes another function as its own argument
+    // forEach
+        let display = document.getElementById('display')
+        let numbers = [1, 2, 3, 4, 5]
+        numbers.forEach( (number, index, array) => {
+            display.innerHTML +=`<p>${number} is at index ${index}</p>`
+        });
+    //map
+        let names =["tolu", "sola", "tope"];
+        names.map( (name, index, array) =>{
+            console.log("hello");
+            
+        })
+        console.log(names);
+
+        //filter
+        let filteredNums = numbers.filter((num, ind, arr) =>{
+            return num % 2 != 1
+        })
+        console.log(filteredNums);
+        //find
+        let check = names.find((studentName, i) =>{
+            return studentName == "sola"
+        })
+        console.log(check);
+        
+    //Assignment:
+</script>
+</html>

@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1{
+        text-align: center;
+        margin-top: 200px;
+    }
+</style>
+<body>
+    <form action="">
+        <label for="hours">Hour:</label>
+        <input type="number" name="" id="hours"><br>
+        <label for="minutes">Minute:</label>
+        <input type="number" name="" id="minutes"><br>
+        <label for="seconds">Seconds:</label>
+        <input type="number" name="" id="seconds"><br>
+        <button onclick="setAlarm()">Set Alarm</button>
+        <!-- <button onclick="stopAlarm()">Stop Alarm</button> -->
+    </form>
+    <h1 id="display"></h1>
+    <div id="result">
+
+    </div>
+</body>
+<script>
+    //setInterval
+    //1000ms == 1s
+    //2000ms 2s
+    let display = document.getElementById('display')
+   
+    let time =    setInterval(() => { 
+        display.innerHTML = `
+                ${new Date().toLocaleTimeString()}`
+
+        }, 1000);
+
+    // let num = 0;
+    // let interval = setInterval(() =>{
+    //     console.log("Ayomide");
+    //     num++;
+    //     console.log(num);
+    //     if (num == 9) {
+    //         clearInterval(interval)
+    //     }
+        
+    // }, 1000);
+
+    let hour = document.getElementById('hours');
+    let minute = document.getElementById('minutes');
+    let second = document.getElementById('secomds');
+    let result = document.getElementById('result'); 
+    let alarms = [];
+
+    function setAlarm() {
+        // result.innerHTML = "";
+        let obj ={
+            hour: hour.value,
+            minute: minute.value,
+            second: second.value
+        }
+        console.log(obj);
+        
+        alarms.push(obj);
+        console.log(alarms);
+        
+    }
+    //setTimeout
+    //let timeout = setTimeout(()  =>{
+        // console.log(7);
+        
+    //}, 4000);
+    //claearInterval 
+    //clearTimeout
+    
+</script>
+</html>

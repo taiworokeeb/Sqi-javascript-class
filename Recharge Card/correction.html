@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background-color: #ffffff;
+        padding: 20px;
+    }
+
+
+    .main-container {
+        background-color: #d8a07c;
+        padding: 30px;
+        border-radius: 4px;
+    }
+
+    .title {
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 30px;
+        font-weight: bold;
+        border-bottom: 2px dashed #666;
+        display: inline-block;
+        width: 100%;
+        padding-bottom: 5px;
+    }
+
+    .form-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+    }
+
+    .left-col,
+    .right-col {
+        flex: 1;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    .input-group label {
+        display: block;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    .input-group input,
+    .input-group select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        outline: none;
+        background-color: #f7f7f7;
+        cursor: pointer;
+    }
+
+    .btn-group {
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .btn-blue {
+        background-color: #3b82f6;
+        flex: 1;
+    }
+
+    .btn-gray {
+        background-color: #718096;
+        flex: 1;
+    }
+
+    .btn-light-blue {
+        background-color: #63b3ed;
+    }
+
+    .full-width {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .search-group {
+        margin-top: 20px;
+    }
+
+    /* Table Styling */
+    .table-container {
+        margin-top: 20px;
+        background-color: #efefef;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+    }
+
+    th,
+    td {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    th {
+        font-weight: bold;
+        color: #333;
+    }
+
+    tbody tr {
+        border-top: 1px solid #ddd;
+    }
+
+    .status-used {
+        color: #e53e3e;
+        font-weight: bold;
+    }
+
+    .status-unused {
+        color: #d69e2e;
+        font-weight: bold;
+    }
+
+    .btn-delete {
+        background-color: #e53e3e;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+
+    <div class="main-container">
+    <h1 class="title">Recharge Card Generator</h1>
+
+    <div class="form-container">
+
+        <div class="left-col">
+            <div class="input-group">
+                <label for="network">Network:</label>
+                <select id="network">
+                    <option value="" disabled selected>-- Select Network --</option>
+                    <option value="mtn">MTN</option>
+                    <option value="airtel">Airtel</option>
+                    <option value="glo">Glo</option>
+                    <option value="9mobile">9mobile</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="amount">Amount:</label>
+                <select class="form-select mb-3" aria-label="Default select example" id="amount">
+                    <option selected>Select Amount</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                    <option value="2000">2000</option>
+                    <option value="5000">5000</option>
+                    <option value="10000">10000</option>
+                </select>
+        
+                <!-- <input type="text" id="amount"> -->
+            </div>
+
+            <div class="input-group">
+                <label for="generated-code">Generated Code:</label>
+                <input type="text" id="generate" readonly placeholder=" ">
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-blue" onclick="generatePin()">Generate Pin</button>
+                <button class="btn btn-gray" onclick="save()">Save Pin</button>
+            </div>
+        </div>
+
+        <div class="right-col">
+            <div class="input-group">
+                <label for="recharge-code">Recharge Code:</label>
+                <input type="text" id="recharge-code">
+            </div>
+
+            <button class="btn btn-light-blue full-width" onclick="recharge()">Recharge</button>
+            
+            <div class="input-group search-group">
+                <label for="search">Search:</label>
+                <input type="text" id="search" placeholder="Recharge Code">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Network</th>
+                <th>Amount</th>
+                <th>Pin</th>
+                <th>Recharge Code</th>
+                <th>Status</th>
+                <th>Date Created</th>
+                <th>Date Used</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tablebody"></tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    let generate = document.getElementById("generate");
+    let amount = document.getElementById("amount");
+    let network = document.getElementById("network");
+    let tableBody = document.getElementById("tablebody");
+    let rechargeInput = document.getElementById("recharge-code");
+    let code;
+    let randomPin;
+    let card;
+    // let dated = new Date().toLocaleString();
+
+ 
+    let cards = JSON.parse(localStorage.getItem("usercards")) || [];
+
+   
+
+    function generatePin() {
+        randomPin = Math.trunc(Math.random() * 1000000000000000);
+        generate.value = randomPin
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Pin Generated Successfully',
+            timer: 1500,
+            showConfirmButton: false
+        });
+    }
+
+
+    let pin = {
+        mtn: "*555*",
+        airtel: "*126*",
+        glo: "*123*",
+        "9mobile": "*222*"
+    }
+    function save() {
+         if (network.value == "mtn") {
+            code = pin.mtn
+        }else if(network.value == "glo"){
+            code = pin.glo
+        }else if(network.value == "airtel"){
+            code = pin.airtel
+        }else if(network.value == "9mobile"){
+            code = pin["9mobile"]
+        }
+
+
+        card = {
+            network: network.value,
+            amount: amount.value,
+            pin: code,
+            rechargeCode: `${code}${randomPin}#`,
+            status: 'unused',
+            datecreated: `${new Date().toLocaleDateString()}`,
+            dateUsed: ""
+        }
+
+       
+
+
+
+
+        cards.push(card);
+        console.log(cards);
+        showTable()
+        saveCards()
+        
+    }
+
+    
+    function showTable() {
+        tableBody.innerHTML = "";
+
+        cards.forEach((item, index) => {
+            tableBody.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${item.network}</td>
+                <td>${item.amount}</td>
+                <td>${item.pin}</td>
+                <td>${item.rechargeCode}</td>
+                <td>${item.status}</td>
+                <td>${item.datecreated}</td>
+                <td>${item.dateUsed}</td>
+                <td><button class="btn-delete" onclick="deletePin(${index})">Delete</button></td>
+            </tr>
+            `;
+        });
+    }
+
+    function deletePin(index) {
+        cards.splice(index, 1);
+        saveCards()
+        showTable();
+
+    }
+
+    function recharge() {
+        alert("Card successfully recharge");
+        cards.find(element => {
+            if (rechargeInput.value == element.rechargeCode) {
+            
+            // console.log(card.rechargeCode);
+            element.status = "used";
+            element.dateUsed = new Date().toLocaleDateString();
+            saveCards()
+            showTable()
+        }
+
+        });
+        
+        
+
+      
+    }
+
+
+    function saveCards() {
+        localStorage.setItem("usercards", JSON.stringify(cards));
+    }
+
+    // function getSavedCards() {
+    //     cards = JSON.parse(localStorage.getItem("usercards")) || []
+    //     showTable()
+    // }
+
+    // getSavedCards();
+        showTable()
+
+</script>
+</body>
+
+</html>

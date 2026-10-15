@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Blog</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* FORM */
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .published-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .published-container input {
+            width: auto;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0d65d9;
+        }
+
+        /* BLOGS */
+
+        #blogs {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .blog {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .blog h2 {
+            margin-bottom: 10px;
+        }
+
+        .blog p {
+            line-height: 1.6;
+        }
+
+        .author {
+            color: #555;
+        }
+
+        .published {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 5px;
+        }
+
+        .not-published {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Blog</h1>
+
+
+    <!-- ========================= -->
+    <!-- BLOG FORM -->
+    <!-- ========================= -->
+
+    <div class="form-container">
+
+        <h2>Create a Blog</h2>
+
+        <form id="blogForm">
+
+            <label for="author">Author</label>
+
+            <input
+                type="text"
+                id="author"
+                placeholder="Enter author's name"
+                required
+            >
+
+
+            <label for="title">Title</label>
+
+            <input
+                type="text"
+                id="title"
+                placeholder="Enter blog title"
+                required
+            >
+
+
+            <label for="content">Content</label>
+
+            <textarea
+                id="content"
+                placeholder="Enter blog content"
+                required
+            ></textarea>
+
+
+            <label for="image">Image URL</label>
+
+            <input
+                type="url"
+                id="image"
+                placeholder="https://example.com/image.jpg"
+                required
+            >
+
+
+            <div class="published-container">
+
+                <input
+                    type="checkbox"
+                    id="isItPublished"
+                >
+
+                <label for="isItPublished">
+                    Is this blog published?
+                </label>
+
+            </div>
+
+
+            <button type="submit">
+                Add Blog
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- BLOGS WILL APPEAR HERE -->
+    <!-- ========================= -->
+
+    <div id="blogs"></div>
+
+
+    <!-- ========================= -->
+    <!-- FIREBASE JAVASCRIPT -->
+    <!-- ========================= -->
+
+    <script type="module">
+
+        // Import Firebase
+        import { initializeApp } from
+        "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+        // Import Firestore functions
+        import {
+            getFirestore,
+            collection,
+            getDocs,
+            addDoc
+        } from
+        "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyC2hZ0cVBV-6yZXAf5hAp1yOARrl-HhWO4",
+
+            authDomain: "mjay-73e73.firebaseapp.com",
+
+            projectId: "mjay-73e73",
+
+            storageBucket: "mjay-73e73.firebasestorage.app",
+
+            messagingSenderId: "126244993989",
+
+            appId: "1:126244993989:web:44f1a78453895d4ab3a9ac"
+
+        };
+
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+
+        // Initialize Firestore
+        const dataBase = getFirestore(app);
+
+
+        // Get the myblog collection
+        const colRef = collection(dataBase, "myblog");
+
+
+        // Get the form
+        const blogForm = document.getElementById("blogForm");
+
+
+        // Get the blog container
+        const blogsContainer = document.getElementById("blogs");
+
+
+
+        // ==========================================
+        // FUNCTION TO GET ALL BLOGS
+        // ==========================================
+
+        const allBlogs = async () => {
+
+            try {
+
+                // Clear the UI first
+                blogsContainer.innerHTML = "";
+
+
+                // Get all documents from myblog
+                const querysnapshot = await getDocs(colRef);
+
+
+                // Loop through every document
+                querysnapshot.forEach((doc) => {
+
+                    // Get document data
+                    const data = {
+                        id: doc.id,
+                        ...doc.data()
+                    };
+
+
+                    console.log(data);
+
+
+                    // Create blog container
+                    const blogContainer = document.createElement("div");
+
+                    blogContainer.classList.add("blog");
+
+
+                    // Create title
+                    const title = document.createElement("h2");
+
+                    title.textContent = data.title;
+
+
+                    // Create image
+                    const image = document.createElement("img");
+
+                    image.src = data.image;
+
+                    image.alt = data.title;
+
+
+                    // Create content
+                    const content = document.createElement("p");
+
+                    content.textContent = data.content;
+
+
+                    // Create author
+                    const author = document.createElement("p");
+
+                    author.classList.add("author");
+
+                    author.innerHTML = `<b>Author:</b> ${data.author}`;
+
+
+                    // Create published status
+                    const published = document.createElement("span");
+
+
+                    if (data.isItPublished === true) {
+
+                        published.textContent = "Published";
+
+                        published.classList.add("published");
+
+                    } else {
+
+                        published.textContent = "Not Published";
+
+                        published.classList.add("not-published");
+
+                    }
+
+
+                    // Add everything to blog container
+                    blogContainer.appendChild(title);
+
+                    blogContainer.appendChild(image);
+
+                    blogContainer.appendChild(content);
+
+                    blogContainer.appendChild(author);
+
+                    blogContainer.appendChild(published);
+
+
+                    // Add blog to webpage
+                    blogsContainer.appendChild(blogContainer);
+
+                });
+
+            } catch (error) {
+
+                console.error("Error getting blogs:", error);
+
+            }
+
+        };
+
+
+
+        // ==========================================
+        // ADD NEW BLOG
+        // ==========================================
+
+        blogForm.addEventListener("submit", async (event) => {
+
+            // Stop page from refreshing
+            event.preventDefault();
+
+
+            // Get values from form
+            const author = document.getElementById("author").value;
+
+            const title = document.getElementById("title").value;
+
+            const content = document.getElementById("content").value;
+
+            const image = document.getElementById("image").value;
+
+            const isItPublished =
+                document.getElementById("isItPublished").checked;
+
+
+            try {
+
+                // Add document to Firestore
+                const docRef = await addDoc(colRef, {
+
+                    author: author,
+
+                    content: content,
+
+                    image: image,
+
+                    isItPublished: isItPublished,
+
+                    title: title
+
+                });
+
+
+                // Show the generated document ID
+                console.log(
+                    "Blog added successfully. Document ID:",
+                    docRef.id
+                );
+
+
+                // Clear the form
+                blogForm.reset();
+
+
+                // Get blogs again
+                allBlogs();
+
+
+            } catch (error) {
+
+                console.error("Error adding blog:", error);
+
+            }
+
+        });
+
+
+
+        // ==========================================
+        // LOAD BLOGS WHEN PAGE OPENS
+        // ==========================================
+
+        allBlogs();
+
+    </script>
+
+</body>
+
+</html>

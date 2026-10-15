@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome</h1>
+    <button id="signin">Sign In</button>
+    <div id="display"></div>
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAYXNEwVhYeDrv9B1yTlEOcIiy0jFBhN6A",
+            authDomain: "blog-26faa.firebaseapp.com",
+            projectId: "blog-26faa",
+            storageBucket: "blog-26faa.firebasestorage.app",
+            messagingSenderId: "98553099435",
+            appId: "1:98553099435:web:ecb85b5f9cff595cb4b3ee"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+        let signIn = document.getElementById('signin');
+
+        signIn.addEventListener('click', () => {
+            signInWithPopup(auth, provider)
+            
+            .then((output) =>{
+                console.log(output);
+
+                display.innerHTML = `
+                                        <h3>${output.user.displayName}</h3> 
+                                        <p>${output.user.email}</p>
+                                        <img src="${output.user.photoURL}" alt="">
+                                    `;
+                
+            }).catch((error)=>{
+                console.log(error.message);
+                
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" name="" id="input" placeholder="Input a value"> 
+    <button id="increase">Increase</button>
+    <button id="decrease">Decrease</button>
+    <!-- <select name="Gender" id="">Your Gender</select> -->
+
+    <script>
+        // local variable are variable declare within a function and you can only use it only in the function
+        //Global variable are variable declare outside a funtion and you can acess it anywhere on your program
+
+        //local variable
+        let age = 12;
+        console.log(age);
+        
+        function myName() {
+            let firstName = "Sola";
+            console.log(firstName);
+            age = 30;
+            console.log(age);
+                 
+        }
+        age = 34
+        myName();
+        console.log(age);
+        let input = document.getElementById("input")
+        let increase = document.getElementById('increase')
+        let decrease = document.getElementById('decrease')
+
+
+        increase.addEventListener("click" ,()=>{
+            if (input.value < 10) {
+            input.value++
+            }else if (input.value > 10) {
+                input.value = alert("Please input a value between 1-10")
+            }
+        })
+        decrease.addEventListener("click" ,()=>{
+            if (input.value > 0) {
+            input.value--
+            }else if (input.value > 10) {
+                input.value = alert("Please input a value between 1-10")
+            }            
+        } )
+        // Read on string methods, Array methods, What are array, what is javascript object
+        //string method are used to manipulate string
+        let text = "hello"
+        console.log(text.toUpperCase());
+        // console.log(text.remove(0, 1));('hello', 'hi');
+        //length -this is to check the length of a string or text
+        let name = "adebola";
+        console.log(name.length);
+        //toUpperCase is used to change string to upper case
+        console.log(name.toUpperCase());
+        //toLowerCasecis used to change string to lower case
+        console.log(name.toLowerCase());
+        //charAtcis to check the index of a letter 
+        console.log(name.charAt(3));
+        //concat is used to join two string together
+        console.log(name.concat(" is a good boy"));
+        //includes is used to check wether a string contains a specific value
+        console.log(name.includes("ola"));
+        //indexOf is use to check the position(index) of  where a letter first appear
+        console.log(name.indexOf("a"));
+        //lastIndexOf is use to check the last index of a letter if it's appearing more than one it will read the last index of that letter
+        console.log(name.lastIndexOf("a"));
+        //slice is use to remove part of a string
+        console.log(name.slice(1,5));
+        //substring is  also use to remove part of a string
+        console.log(name.substring(0,3));
+        //trim is used to remove space in the begining and the end
+        // console.log();
+        // split is use to turn string into an array
+        let fruits = "apple,banana,orange";
+        console.log(fruits.split()); 
+        
+        //replace is use to replace a string
+        console.log(name.replace("adebola", "habeeb"));
+        
+        //Array is a variable use to store multiple values and it access values by using index counting from 0
+        let array = ["Olagunju" , "Rokeeb" , "Taiwo"] 
+        console.log(array[2]);
+        // changing of array value
+        array[0] = "Adebola";
+        console.log(array);
+        //array methods
+        //How to add new value into an array
+        array.push("olagunju")   
+        console.log(array);
+        // how to remove last item in an array
+        array.pop()
+        console.log(array);
+        //how to remove the first word of an array
+        array.shift();
+        console.log(array);
+        // add item to the biginning
+        array.unshift("boy");
+        console.log(array);
+
+    </script>
+</body>
+</html>

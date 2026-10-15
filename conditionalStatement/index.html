@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" name="" id="input" placeholder="Enter your Age">
+    <button onclick="checkAge()">Submit</button>
+    <br>
+    <!-- <div> -->
+        <input type="number" name="" id="cgpa" placeholder="Input your CGPA">
+         <button onclick="checkGrade()">Check Grade</button>
+    </div>
+    <script>
+        //if statement
+        if (3 > 9) {
+            console.log("hello");
+            
+        }
+        //if else statement 
+        if (3 > 9) {
+            console.log("hello");
+            
+        } else {
+            console.log("hi");
+            
+        }
+        //else if statement
+        let num = 4
+        if (num > 12) {
+            console.log("ok");
+    
+        } else if (num === "4") {
+            console.log("lol");
+            
+        }else if (num < 2) {
+            console.log("hi");
+            
+        }else if (num == "4") {
+            console.log("hey");
+            
+        }else if (num >= 4) {
+            console.log("hello");
+            
+        }
+        //class work
+        //write a code that check the eligibility of Nigerians in voting
+        //Steps: Create an input with a placeholder(Enter your age) and a button element
+
+        let input = document.getElementById("input")
+        let dispay = document.createElement("h1")
+        // dispay.innerText = "You are eligible to vote"
+        function checkAge(){
+            // input.innerHTML = " "
+            if (input.value >= 18 && input.value <= 100) {
+                dispay.innerText = "You are eligible to vote"
+                document.body.appendChild(dispay)
+                // alert("You are eligible to vote")
+            } else if(input.value > 0 && input.value <= 17 ){
+                // alert("you are not eligible to vote")
+                dispay.innerText = "You are not eligible to vote"
+                document.body.appendChild(dispay)
+
+            } else if(input.value <= 0 || input.value > 100 ){
+                // alert("you are not eligible to vote")
+                dispay.innerText = "Plss input a number between 1-100"
+                document.body.appendChild(dispay)
+            } 
+        }
+        let cgpa = document.getElementById("cgpa")
+        let displayCgpa = document.createElement("h2")
+        function checkGrade() {
+            // alert("hey")
+            if (cgpa.value === " ") {
+                displayCgpa.innerText = "plss input your CGPA";
+                // alert('')
+                document.body.appendChild(displayCgpa);
+            }
+            else if (cgpa.value < 0 || cgpa.value > 5) {
+                displayCgpa.innerText = "invalid CGPA";
+                document.body.appendChild(displayCgpa);
+            } else if (cgpa.value >= 0 && cgpa.value <= 1) {
+                displayCgpa.innerText = "Fail"
+                document.body.appendChild(displayCgpa);
+            } else if (cgpa.value >=1.1 && cgpa.value <= 1.49) {
+                displayCgpa.innerText = "pass"
+                document.body.appendChild(displayCgpa);
+            } else if (cgpa.value >=1.5 && cgpa.value <= 2.39) {
+                displayCgpa.innerText = "Third Class";
+                document.body.appendChild(displayCgpa);
+            } else if (cgpa.value >= 2.40 && cgpa.value <= 3.49) {
+                displayCgpa.innerText = "Second Class Lower";
+                document.body.appendChild(displayCgpa);
+            } else if (cgpa.value >= 3.50 && cgpa.value <= 4.49) {
+                displayCgpa.innerText = "Second Class Upper";
+                document.body.appendChild(displayCgpa);
+            } else if (cgpa.value >= 4.50 && cgpa.value <= 5) {
+                displayCgpa.innerText = "First Class";
+                document.body.appendChild(displayCgpa);
+            } 
+        }
+        //Ass
+        //
+    </script>
+</body>
+</html>

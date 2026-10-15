@@ -1,0 +1,210 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    section{
+        background-color: aliceblue;
+        width: 100%;
+        padding-top: 10px;
+    }
+    #display{
+        /* margin: 10px; */
+        width: 95%;
+        display:flex;
+        /* grid-template-columns: repeat(3, 1fr); */
+        flex-wrap: wrap;
+        /* padding-left: 10px; */
+        justify-content: space-around;
+        margin: auto;
+    }
+    .card{
+        /* margin-bottom: 40px; */
+        border-radius: 20px;
+        width: 400px;
+        /* background-color: white; */
+        box-shadow: 2px 2px  20px rgb(71, 69, 69);
+        margin:auto;
+    }
+    .card-body{
+        background-color: white;
+        margin-bottom: 20px;
+    }
+    img{
+        height: 350px;
+        width: 100%;
+    }
+    /* p{
+        padding-top:-10px;
+    } */
+</style>
+<body>
+    <section>
+        <div id="display">
+
+        </div>
+    </section>
+</body>
+    <script>
+    const clothingProducts = [
+    {
+        id: 1,
+        name: "Classic White T-Shirt",
+        description: "Soft cotton crew-neck T-shirt for everyday wear.",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
+        amount: 25.99,
+        currency: "USD",
+        category: "T-Shirts",
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["White"],
+        stock: 45,
+        rating: 4.5
+    },
+    {
+        id: 2,
+        name: "Blue Denim Jacket",
+        description: "Classic-fit denim jacket with button-front closure.",
+        image: "https://images.unsplash.com/photo-1516257984-b1b4d707412e",
+        amount: 59.99,
+        currency: "USD",
+        category: "Jackets",
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Blue"],
+        stock: 20,
+        rating: 4.7
+    },
+    {
+        id: 3,
+        name: "Black Hoodie",
+        description: "Warm fleece hoodie with a front pocket and adjustable hood.",
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7",
+        amount: 45.0,
+        currency: "USD",
+        category: "Hoodies",
+        sizes: ["M", "L", "XL"],
+        colors: ["Black", "Grey"],
+        stock: 31,
+        rating: 4.6
+    },
+    {
+        id: 4,
+        name: "Floral Summer Dress",
+        description: "Lightweight floral dress, perfect for warm-weather occasions.",
+        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446",
+        amount: 39.99,
+        currency: "USD",
+        category: "Dresses",
+        sizes: ["XS", "S", "M", "L"],
+        colors: ["Floral"],
+        stock: 16,
+        rating: 4.4
+    },
+    {
+        id: 5,
+        name: "Slim Fit Chinos",
+        description: "Comfortable slim-fit chinos made with stretch cotton.",
+        image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a",
+        amount: 42.5,
+        currency: "USD",
+        category: "Pants",
+        sizes: ["30", "32", "34", "36"],
+        colors: ["Khaki", "Navy"],
+        stock: 28,
+        rating: 4.3
+    },
+    {
+        id: 6,
+        name: "Striped Polo Shirt",
+        description: "Breathable striped polo shirt with a smart casual look.",
+        image: "https://images.unsplash.com/photo-1586790170083-2f9ceadc732d",
+        amount: 32.99,
+        currency: "USD",
+        category: "Polo Shirts",
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Blue", "White"],
+        stock: 38,
+        rating: 4.2
+    },
+    {
+        id: 7,
+        name: "Leather Biker Jacket",
+        description: "Premium faux-leather biker jacket with zip details.",
+        image: "https://images.unsplash.com/photo-1551028719-00167b16eac5",
+        amount: 120.0,
+        currency: "USD",
+        category: "Jackets",
+        sizes: ["M", "L", "XL"],
+        colors: ["Black", "Brown"],
+        stock: 12,
+        rating: 4.8
+    },
+    {
+        id: 8,
+        name: "Grey Sweatpants",
+        description: "Relaxed-fit sweatpants with elastic waistband and side pockets.",
+        image: "https://images.unsplash.com/photo-1517438476312-10d79c077509",
+        amount: 35.99,
+        currency: "USD",
+        category: "Pants",
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Grey"],
+        stock: 40,
+        rating: 4.3
+    },
+    {
+        id: 9,
+        name: "Beige Trench Coat",
+        description: "Elegant water-resistant trench coat with a waist belt.",
+        image: "https://images.unsplash.com/photo-1539533113208-f6df8cc8b543",
+        amount: 89.99,
+        currency: "USD",
+        category: "Coats",
+        sizes: ["S", "M", "L"],
+        colors: ["Beige"],
+        stock: 14,
+        rating: 4.6
+    },
+    {
+        id: 10,
+        name: "Red Knit Sweater",
+        description: "Cozy knit sweater with a soft feel and regular fit.",
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105",
+        amount: 48.0,
+        currency: "USD",
+        category: "Sweaters",
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Red"],
+        stock: 25,
+        rating: 4.5
+    }
+    ];
+    let displayCard = document.getElementById('display');
+
+    displayCard.innerHTML = ""
+            clothingProducts.forEach( (clothingProduct, index, array) => {
+                displayCard.innerHTML +=`
+                <div class="card">
+                    <img src= ${clothingProduct.image} class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${clothingProduct.name}</h5>
+                        <p class="card-text"><b>Description:</b>${clothingProduct.description}</p>
+                        <p class="card-text"><B>Price:</b> ${clothingProduct.amount} ${clothingProduct.currency}</p>
+                        <p class="card-text"><b>Category:</b> ${clothingProduct.category}</p>
+                        <p class="card-text"><b>Sizes:</b> ${clothingProduct.sizes}   <b> Colors:</b> ${clothingProduct.colors}</p>
+                        <p class="card-text"><b>Stock:</b> ${clothingProduct.stock} <b>Rating:</b> ${clothingProduct.rating}</p>
+                        <a href="#" class="btn btn-primary">Buy Now</a>
+                    </div>
+                </div> `
+            }); 
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</html>

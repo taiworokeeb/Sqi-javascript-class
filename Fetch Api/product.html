@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+
+    .product-image {
+      width: 100%;
+      max-height: 450px;
+      object-fit: contain;
+      background: white;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container py-5">
+    <a href="./index.html" class="btn btn-outline-secondary mb-4">← Back to products</a>
+
+    <div id="productDetails" class="row"></div>
+  </main>
+
+  <script>
+    let productDetails = document.getElementById("productDetails");
+    let productId = new URLSearchParams(window.location.search).get("id");
+
+    async function getProduct() {
+      try {
+        let response = await fetch(`https://fakestoreapi.com/products/${productId}`);
+
+        if (!response.ok) {
+          throw new Error("Product not found");
+        }
+
+        let product = await response.json();
+
+        productDetails.innerHTML = `
+          <div class="col-md-6 mb-4">
+            <div class="card p-3">
+              <img src="${product.image}" alt="${product.title}" class="product-image">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <h1>${product.title}</h1>
+            <p><strong>Category:</strong> ${product.category}</p>
+            <h3 class="text-success">$${product.price}</h3>
+            <p><strong>Rating:</strong> ${product.rating.rate} / 5 (${product.rating.count} reviews)</p>
+            <hr>
+            <h5>Description</h5>
+            <p>${product.description}</p>
+            <button class="btn btn-danger">Add to Cart</button>
+          </div>
+        `;
+      } catch (error) {
+        productDetails.innerHTML = `
+          <div class="alert alert-danger">
+            Unable to load this product.
+          </div>
+        `;
+      }
+    }
+
+    getProduct();
+  </script>
+</body>
+</html>

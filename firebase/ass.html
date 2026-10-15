@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    background: #fbfaf6;
+    color: #1d2930;
+  }
+
+  .page-shell {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 48% 52%;
+  }
+
+  .image-side {
+    position: relative;
+    min-height: 100vh;
+    color: white;
+    background-image: url("https://images.unsplash.com/photo-1712493511270-0b52711104f8?auto=format&fit=crop&w=1800&q=85");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+        rgba(20, 35, 28, 0.3),
+        rgba(15, 35, 25, 0.8));
+  }
+
+  .image-content {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    padding: 42px 52px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo {
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .logo span {
+    color: #dce88f;
+  }
+
+  .hero-text {
+    margin-top: auto;
+    max-width: 500px;
+    padding-bottom: 40px;
+  }
+
+  .eyebrow {
+    margin: 0 0 12px;
+    color: #dce88f;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .green {
+    color: #285943;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    letter-spacing: -0.04em;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    line-height: 1.05;
+  }
+
+  .hero-text p:last-child {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+  }
+
+  .form-side {
+    display: grid;
+    place-items: center;
+    padding: 40px 30px;
+  }
+
+  .form-container {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .form-toggle {
+    display: none;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    line-height: 1.15;
+  }
+
+  .switch-text {
+    margin: 12px 0 34px;
+    color: #6d7676;
+    font-size: 0.92rem;
+  }
+
+  .switch-text label {
+    color: #285943;
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  .sign-up-heading,
+  .confirm-password,
+  .sign-up-button-text {
+    display: none;
+  }
+
+  form {
+    display: grid;
+    gap: 10px;
+  }
+
+  label {
+    font-size: 0.84rem;
+    font-weight: 600;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    height: 52px;
+    margin-top: 7px;
+    padding: 0 15px;
+    border: 1px solid #d8ded8;
+    border-radius: 8px;
+    background: white;
+    font: inherit;
+    outline: none;
+  }
+
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #285943;
+    box-shadow: 0 0 0 3px rgba(40, 89, 67, 0.12);
+  }
+
+  .password-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .password-row a {
+    color: #285943;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .agree-terms {
+    display: none;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 10px 0;
+    color: #596260;
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .agree-terms input {
+    width: 15px;
+    height: 15px;
+    margin-top: 3px;
+    accent-color: #285943;
+  }
+
+  .agree-terms a {
+    color: #285943;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .form-toggle:checked~.form-container .agree-terms {
+    display: flex;
+  }
+
+  .main-button,
+  .google-button {
+    height: 52px;
+    border-radius: 8px;
+    font: 600 0.9rem "DM Sans", sans-serif;
+    cursor: pointer;
+  }
+
+  .main-button {
+    margin-top: 5px;
+    border: 0;
+    background: #285943;
+    color: white;
+  }
+
+  .main-button:hover {
+    background: #1d4935;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 28px 0 18px;
+    color: #8c9590;
+    font-size: 0.76rem;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #e4e8e2;
+  }
+
+  .google-button {
+    width: 100%;
+    border: 1px solid #d8ded8;
+    background: white;
+    color: #36413d;
+  }
+
+  .google-button:hover {
+    background: #f5f8f4;
+  }
+
+  .google-button strong {
+    margin-right: 10px;
+    color: #4285f4;
+    font-size: 1rem;
+  }
+
+  .terms {
+    max-width: 330px;
+    margin: 24px auto 0;
+    color: #89918d;
+    text-align: center;
+    font-size: 0.7rem;
+    line-height: 1.6;
+  }
+
+  .terms a {
+    color: #68746e;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  /* Sign-up mode */
+  .form-toggle:checked~.form-container .sign-in-heading {
+    display: none;
+  }
+
+  .form-toggle:checked~.form-container .sign-up-heading {
+    display: block;
+  }
+
+  .form-toggle:checked~.form-container .confirm-password {
+    display: block;
+  }
+
+  .form-toggle:checked~.form-container .forgot-password,
+  .form-toggle:checked~.form-container .remember-me,
+  .form-toggle:checked~.form-container .social-login {
+    display: none;
+  }
+
+  .form-toggle:checked~.form-container .sign-in-button-text {
+    display: none;
+  }
+
+  .form-toggle:checked~.form-container .sign-up-button-text {
+    display: inline;
+  }
+
+  @media (max-width: 760px) {
+    .page-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .image-side,
+    .image-content {
+      min-height: 300px;
+    }
+
+    .image-content {
+      padding: 28px;
+    }
+
+    .hero-text {
+      padding-bottom: 0;
+    }
+
+    .hero-text p:last-child {
+      display: none;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+    }
+
+    .form-side {
+      padding: 48px 24px;
+    }
+  }
+</style>
+
+<body>
+  <main class="page-shell">
+    <section class="image-side">
+      <div class="overlay"></div>
+
+      <div class="image-content">
+        <a href="#" class="logo"></a>
+
+        <div class="hero-text">
+          <p class="eyebrow">A better way to begin</p>
+          <h1>Your next great idea starts here.</h1>
+          <p>Join a community of people building meaningful things.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-side">
+      <input type="checkbox" id="form-toggle" class="form-toggle" />
+
+      <div class="form-container">
+        <div class="sign-in-heading">
+          <p class="eyebrow green">Welcome back</p>
+          <h2>Sign in to your account</h2>
+          <p class="switch-text">
+            New here?
+            <label for="form-toggle">Create an account</label>
+          </p>
+        </div>
+
+        <div class="sign-up-heading">
+          <p class="eyebrow green">Join us today</p>
+          <h2>Create your account</h2>
+          <p class="switch-text">
+            Already have an account?
+            <label for="form-toggle">Sign in</label>
+          </p>
+        </div>
+
+        <form>
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="you@example.com" required />
+
+          <div class="password-row">
+            <label for="password">Password</label>
+            <a href="#" class="forgot-password">Forgot password?</a>
+          </div>
+
+          <input type="password" id="password" placeholder="Enter your password" required />
+
+          <div class="confirm-password">
+            <label for="confirm-password">Confirm password</label>
+            <input type="password" id="confirm-password" placeholder="Confirm your password" />
+          </div>
+
+          <label class="agree-terms">
+            <input type="checkbox" id="agree-terms">
+            <span>
+              I agree to the
+              <a href="#">Terms and Conditions</a>
+              and
+              <a href="#">Privacy Policy</a>.
+            </span>
+          </label>
+
+          <button type="submit" class="main-button">
+            <span class="sign-in-button-text">Sign in </span>
+            <span class="sign-up-button-text">Sign up</span>
+          </button>
+        </form>
+
+        <div class="social-login">
+          <div class="divider">
+            <span>or continue with</span>
+          </div>
+
+          <button type="button" class="google-button" id="google">
+            <strong>G</strong>
+            Continue with Google
+          </button>
+        </div>
+
+        <p class="terms">
+          By continuing, you agree to our
+          <a href="#">Terms of Service</a> and
+          <a href="#">Privacy Policy</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithPopup,
+      signInWithEmailAndPassword,
+      sendEmailVerification,
+      signOut,
+      GoogleAuthProvider
+    } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAYXNEwVhYeDrv9B1yTlEOcIiy0jFBhN6A",
+      authDomain: "blog-26faa.firebaseapp.com",
+      projectId: "blog-26faa",
+      storageBucket: "blog-26faa.firebasestorage.app",
+      messagingSenderId: "98553099435",
+      appId: "1:98553099435:web:ecb85b5f9cff595cb4b3ee"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const userEmail = document.getElementById('email');
+    const userPassword = document.getElementById('password');
+    const userConfirmPassword = document.getElementById('confirm-password');
+    const form = document.querySelector("form");
+    const formToggle = document.getElementById("form-toggle");
+    const signInWithGoogle = document.getElementById('google');
+    let agreeTerms = document.getElementById("agree-terms");
+
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      try {
+        if (formToggle.checked) {
+          // Sign-up mode
+          if (userPassword.value !== userConfirmPassword.value) {
+            alert("Passwords do not match.");
+            return;
+          }
+          if (!agreeTerms.checked) {
+            alert("Please agree to the Terms and Conditions first.");
+            return;
+          }
+
+          const user = {
+            // username: username.value,
+            userEmail: userEmail.value,
+            userPassword: userPassword.value
+          };
+
+          const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            user.userEmail,
+            user.userPassword);
+          console.log(userCredential);
+
+          await sendEmailVerification(userCredential.user);
+
+          alert("Account created. Check your email to verify your account.");
+
+          await signOut(auth);
+        }
+        else {
+          // Sign-in mode
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            userEmail.value,
+            userPassword.value
+          );
+          if (!userCredential.user.emailVerified) {
+            alert("Please verify your email before signing in.");
+            await signOut(auth);
+            return;
+          }
+          alert("Signed in:", userCredential.user);
+        }
+        form.reset();
+        window.location.href = "mypage.html";
+
+      }
+      catch (error) {
+        console.log(error.code, error.message);
+        alert(error.message);
+      }
+    })
+
+    signInWithGoogle.addEventListener('click', () => {
+      signInWithPopup(auth, provider)
+
+        .then((output) => {
+          console.log(output);
+          window.location.href = "mypage.html";
+        }).catch((error) => {
+          alert(error.message);
+
+        })
+
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      <button onclick="changeBackground()">Click me</button>
+      <!-- <input type="password" name="" id=""> --> <br>
+    <script>
+      let createH1 = document.createElement("div");
+      let createP = document.createElement("p");
+    //   createH1.appendChild(createP)
+      createH1.appendChild(createP);
+      createP.innerText ="I am a boy";
+      //set Atribute
+      createP.setAttribute("id", "greeting");
+      //Remove Attribute
+      createP.removeAttribute("id");
+      console.log(createH1);
+
+
+      let sentenceOne = document.createElement("div");
+      sentenceOne.innerText = 'Rokeeb';
+      document.body.appendChild(sentenceOne);
+      let sentenceTwo = document.createElement("h2");
+      sentenceTwo.innerText = 'He is a boy';
+      document.body.appendChild(sentenceTwo);    
+      //styling in javaScript
+        sentenceOne.style.backgroundColor ='red'
+        sentenceOne.style.color ='white'
+    //create a file, inside the file create a button, onclick to dispay purple
+    //Firstly read and understand 
+    //create an input, in the input style password with a default closed icon 
+    function changeBackground(){
+      document.body.style.backgroundColor = 'yellow'
+    }
+    </script>
+</body>
+</html>

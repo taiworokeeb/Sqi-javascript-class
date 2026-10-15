@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Enter name" id="input">
+    <input type="text" name="" id="gender" placeholder="Enter value">
+    <button onclick="addMe()">Add</button>    
+
+    <script>
+        let input = document.getElementById("input");
+        let gender = document.getElementById('gender');   
+        let obj = {}
+        function addMe() {
+         let userKey = input.value;
+         let userValue = gender.value
+         obj[userKey] = userValue
+        console.log(obj);
+        }
+   
+        
+
+
+
+
+        let person = {
+            name: "Hassan",
+            gender: "make",
+            age:12,
+            complexion: "dark",
+            occupation: "shoe creator",
+            "marital Status": "engaged",
+            canTalk(){
+                console.log("Hassan can talk");
+            },
+            hobbies:["singing", "coding", "eating"]
+        }
+        console.log(person);
+        //accessing properties and methods in a string object
+        //through dot notation
+        console.log(person.gender);
+        console.log(person.complexion);
+        console.log(person.age);
+        person.canTalk();
+        console.log(person.hobbies);
+
+        //through square braces notation
+        console.log(person["marital Status"]);
+        console.log(person["name"]);
+        
+        let date = {
+            name: 'taiwo',
+            gender: 'male',
+
+        }
+        console.log(date);
+    
+        
+        
+        
+        
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #111827, #1e293b, #0f172a);
+    color: white;
+}
+
+.clock-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.clock {
+    padding: 40px 30px;
+    text-align: center;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+}
+
+.title {
+    font-size: 18px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    color: #cbd5e1;
+}
+
+.time {
+    font-size: 65px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+#ampm {
+    font-size: 20px;
+    margin-left: 8px;
+    color: #94a3b8;
+}
+
+.date {
+    font-size: 16px;
+    color: #94a3b8;
+    margin-bottom: 35px;
+}
+
+.alarm-box {
+    padding: 25px;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.alarm-box label {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #cbd5e1;
+}
+
+#alarmTime {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    background: #f8fafc;
+    color: #111827;
+}
+.alarm-inputs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.alarm-inputs select {
+  width: 33.33%;
+  padding: 13px 5px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: 16px;
+  background: #f8fafc;
+  color: #111827;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: 0.3s;
+}
+
+#setAlarm {
+    background: #22c55e;
+    color: white;
+}
+
+#setAlarm:hover {
+    background: #16a34a;
+    transform: translateY(-2px);
+}
+
+#stopAlarm {
+    background: #ef4444;
+    color: white;
+}
+
+#stopAlarm:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+#alarmStatus {
+    margin-top: 18px;
+    font-size: 14px;
+    color: #94a3b8;
+}
+#displayDay{
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+
+    .clock {
+        padding: 30px 20px;
+    }
+
+    .time {
+        font-size: 45px;
+    }
+
+    #ampm {
+        font-size: 16px;
+    }
+}
+</style>
+<body>
+    <div class="clock-container">
+
+        <div class="clock">
+
+            <p class="title">ALARM CLOCK</p>
+
+            <div class="time" id="display">
+            </div>
+            <div id="displayDay"></div>
+            <div class="alarm-box">
+
+                <label for="alarmTime">Set Alarm</label>
+                <div class="alarm-inputs">
+
+                    <select id="alarmHour">
+                        <option value="">Hour</option>
+                        <option>00</option><option>01</option><option>02</option>
+                        <option>03</option><option>04</option><option>05</option>
+                        <option>06</option><option>07</option><option>08</option>
+                        <option>09</option><option>10</option><option>11</option>
+                        <option>12</option><option>13</option><option>14</option>
+                        <option>15</option><option>16</option><option>17</option>
+                        <option>18</option><option>19</option><option>20</option>
+                        <option>21</option><option>22</option><option>23</option>
+                    </select>
+
+                    <select id="alarmMinute">
+                        <option value="">Minute</option>
+                        <option>00</option><option>01</option><option>02</option>
+                        <option>03</option><option>04</option><option>05</option>
+                        <option>06</option><option>07</option><option>08</option>
+                        <option>09</option><option>10</option><option>11</option>
+                        <option>12</option><option>13</option><option>14</option>
+                        <option>15</option><option>16</option><option>17</option>
+                        <option>18</option><option>19</option><option>20</option>
+                        <option>21</option><option>22</option><option>23</option>
+                        <option>24</option><option>25</option><option>26</option>
+                        <option>27</option><option>28</option><option>29</option>
+                        <option>30</option><option>31</option><option>32</option>
+                        <option>33</option><option>34</option><option>35</option>
+                        <option>36</option><option>37</option><option>38</option>
+                        <option>39</option><option>40</option><option>41</option>
+                        <option>42</option><option>43</option><option>44</option>
+                        <option>45</option><option>46</option><option>47</option>
+                        <option>48</option><option>49</option><option>50</option>
+                        <option>51</option><option>52</option><option>53</option>
+                        <option>54</option><option>55</option><option>56</option>
+                        <option>57</option><option>58</option><option>59</option>
+                    </select>
+
+                    <select id="alarmSecond">
+                        <option value="">Seconds</option>
+                        <option>00</option><option>01</option><option>02</option>
+                        <option>03</option><option>04</option><option>05</option>
+                        <option>06</option><option>07</option><option>08</option>
+                        <option>09</option><option>10</option><option>11</option>
+                        <option>12</option><option>13</option><option>14</option>
+                        <option>15</option><option>16</option><option>17</option>
+                        <option>18</option><option>19</option><option>20</option>
+                        <option>21</option><option>22</option><option>23</option>
+                        <option>24</option><option>25</option><option>26</option>
+                        <option>27</option><option>28</option><option>29</option>
+                        <option>30</option><option>31</option><option>32</option>
+                        <option>33</option><option>34</option><option>35</option>
+                        <option>36</option><option>37</option><option>38</option>
+                        <option>39</option><option>40</option><option>41</option>
+                        <option>42</option><option>43</option><option>44</option>
+                        <option>45</option><option>46</option><option>47</option>
+                        <option>48</option><option>49</option><option>50</option>
+                        <option>51</option><option>52</option><option>53</option>
+                        <option>54</option><option>55</option><option>56</option>
+                        <option>57</option><option>58</option><option>59</option>
+                    </select>
+                </div>
+                <button id="setAlarm" onclick="setAlarm()">Set Alarm</button>
+
+                <button id="stopAlarm" onclick="stopAlarm()">Stop Alarm</button>
+
+                <div id="alarmStatus">No alarm set</div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <audio id="alarmAudio" src= "./alarm/alarm-audio.wav" preload= "auto" loop></audio>
+</body>
+<script>
+
+let hour = document.getElementById("alarmHour");
+let minute = document.getElementById("alarmMinute");
+let second = document.getElementById("alarmSecond");
+let alarmStatus = document.getElementById("alarmStatus");
+let displayDay = document.getElementById("displayDay");
+
+let timeArr = [];
+
+let times = document.getElementById("display");
+let alarmAudio = document.getElementById("alarmAudio");
+
+
+
+function timeout() {
+    let date = new Date();
+
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+    displayDay.innerHTML = new Date().toDateString()
+    times.innerHTML = `${hour} : ${minute} : ${second}`;
+
+    // Check alarms every tick
+    timeArr.forEach((time) => {
+        if (
+            Number(time.hour) === hour &&
+            Number(time.minute) === minute &&
+            Number(time.second) === second
+        ) {
+            alarmAudio.loop = true;
+
+            if (alarmAudio.paused) {
+            alarmAudio.play();
+            }
+        }
+    });
+}
+
+setInterval(timeout, 1000);
+
+
+function setAlarm() {
+    let obj = {
+        hour: hour.value,
+        minute: minute.value,
+        second: second.value
+    };
+
+    if (
+        hour.value === "" ||
+        minute.value === "" ||
+        second.value === ""
+    ) {
+        alert("pls input Time !!!");
+
+    } else if (
+        hour.value > 24 ||
+        minute.value >= 60 ||
+        second.value >= 60
+    ) {
+        alert("Invalid Time !!!");
+
+    } else if (
+        hour.value < 0 ||
+        minute.value < 0 ||
+        second.value < 0
+    ) {
+        alert("Invalid Time !!!");
+
+    } else {
+        timeArr.push(obj);
+        displayTime();
+    }
+
+    hour.value = "";
+    minute.value = "";
+    second.value = "";
+}
+
+
+function displayTime() {
+    alarmStatus.innerHTML = "";
+
+    timeArr.forEach((time) => {
+        alarmStatus.innerHTML += `
+            <p>${time.hour} : ${time.minute} : ${time.second}</p>
+        `;
+    });
+}
+
+
+function stopAlarm() {
+    alarmAudio.pause();
+    alarmAudio.currentTime = 0;
+}
+</script>
+</html>

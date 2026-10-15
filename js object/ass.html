@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #display{
+        width: 80%;
+        margin: auto;
+        margin-top: 30px;
+        /* border:1px; */
+        background-color: azure;
+
+    }
+    th{
+        border: 1px;
+        text-align: center;
+    }
+</style>
+<body>
+    <input type="text" name="" id="name" placeholder="Enter your name">
+    <input type="text" name="" id="gender" placeholder="Enter your gender">
+    <input type="number" name="" id="number" placeholder="Enter your number">
+    <button onclick="addTask()">Add</button>
+    <table>
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Number</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="display" border="1px">
+
+        </tbody>
+        
+    </table>
+</body>
+<script>
+    let input = document.getElementById('name');
+    let gender = document.getElementById('gender');
+    let number = document.getElementById('number');
+    let result = document.getElementById('display');
+    let arr = [];
+    // let obj ={};
+
+
+    function addTask() {
+        // alert()
+        let userName = input.value;
+        let userGender  = gender.value;
+        let userNumber = number.value;
+        // obj.name = userName;
+        // obj.gender = userGender;
+        // obj.number = userNumber;
+        let obj = {
+            name: userName,
+            gender: userGender,
+            number: userNumber
+        }
+        input.value = '';
+        gender.value = '';
+        number.value = '';
+        arr.push(obj)
+    console.log(arr);
+        display();
+    }
+
+
+    function display() {
+        // alert();
+        result.innerHTML = '';
+        for (let i = 0; i < arr.length; i++) {
+            result.innerHTML += `<tr>
+                                    <th>${i + 1}</th> 
+                                    <td>${arr[i].name}</td> 
+                                    <td>${arr[i].gender}</td>
+                                    <td>${arr[i].number}</td>
+                                    <td><button onclick="deleteTask(${i})">Delete</button></td>
+                                </tr>`
+        }
+        // console.log(result);
+    }
+//Ass
+// smath obj date obj higher other function
+
+    function deleteTask(index) {
+        // arr.splice(index,1);
+        // display();
+    }
+</script>
+</html>

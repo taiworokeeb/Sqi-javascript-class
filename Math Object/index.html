@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        //math object
+        let result = Math.random() * 1000;
+        console.log(result);
+
+        console.log(Math.round(result));
+        console.log(Math.ceil(result));
+        console.log(Math.floor(result));
+        console.log(Math.trunc(result));
+
+        
+        //date object
+        let myDate = new Date();
+        console.log(myDate);
+        // get full year
+        console.log(myDate.getFullYear());
+        // get Day
+        console.log(myDate.getDay());
+        // get date
+        console.log(myDate.getDate());
+        // get  month
+        console.log(myDate.getMonth());
+        // minute
+        console.log(myDate.getMinutes);
+        console.log(myDate.getMilliseconds());
+        console.log(myDate.getSeconds());
+        console.log(myDate.getHours());
+        console.log(myDate.getTime());
+        console.log(myDate.toLocaleDateString());
+        let date = myDate.getDate();
+        let month = myDate.getMonth();
+        let year = myDate.getFullYear();
+        console.log(`${date}/${month + 1}/${year}`);
+        
+        
+        
+    </script>
+</body>
+</html>

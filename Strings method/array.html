@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input">
+    <button onclick="addMe()">Add</button>
+    <ol id="display"></ol>
+    <script>
+        let input = document.getElementById("input");
+        let display = document.getElementById("display");
+        let array=[];
+        function addMe() {
+            array.push(input.value);
+            let li = document.createElement('li');
+            li.innerHTML = `${input.value} <button onclick = clearBtn()>Delete</delete> `
+                console.log(array);
+                
+            input.value = '';
+            display.appendChild(li)
+        };
+        function clearBtn(index) {
+    for (let i = 0; i < array.length; i++) {
+        if (i === index) {
+            array.splice(i, 1);
+            break;
+        }
+    }
+
+    display.innerHTML = "";
+
+    // Re-display the updated array
+    for (let i = 0; i < array.length; i++) {
+        let li = document.createElement("li");
+
+        li.innerHTML = `${array[i]} <button onclick="clearBtn(${i})">Delete</button>`;
+
+        display.appendChild(li);
+    }
+
+    console.log(array);
+}
+
+
+
+        //Array
+        let names = ["tope", "ope", "sade", "tolu", "grace"];
+        console.log(names.lenght);
+        console.log(names[4]);
+        console.log(names[3]);
+        names[2] = "hassan"
+        console.log(names);
+        
+
+        //Array methods
+        //push() - adds an item to the end of an array
+        names.push("favour");
+        console.log(names);
+        //pop() - removes an item from the end of an array
+        names.pop();
+        console.log(names);
+        //unshift() - adds an item to the beginning of an array
+        names.unshift("favour");
+        console.log(names);
+        //shift() - removes an item from the beginning of an array
+        names.shift();
+        console.log(names);
+        //indexOf() - returns the index of an item in an array
+        console.log(names.indexOf("hassan"));
+        //includes() - returns true if an item is in an array
+        console.log(names.includes("hassan"));
+        //splice() - adds/removes items from an array
+        names.splice(0, 0, "favour","taiwo");
+        console.log(names);
+        let list = ["boy", "girl","male"]
+        list.splice(1, 1, 'guy',"she")
+        console.log(list);
+        
+        
+        
+        
+        
+    </script>
+</body>
+</html>

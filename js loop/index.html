@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        display: grid;
+        grid-template-columns: repeat(4 , auto);
+        background-color: whitesmoke;
+    }
+    .div{
+        /* border: solid; */
+        text-align: center;
+        margin: 10px;
+    }
+</style>
+<body>
+    
+    <div id="result"></div>
+
+    <script>
+        //loop - is used to repeatedly execute a a block of code as londg as a specified condition is met 
+        //for loop
+        // write a for loop that returns between 1 to 10
+        for (let index = 1; index <= 10; index++) {
+            // const element = array[index];
+            if (index % 2 == 0) {
+                console.log(index)
+            }
+        }
+        for (let index = 1; index <= 10; index++) {
+            // const element = array[index];
+             console.log(index);
+        }
+        for (let index = 20; index <= 50; index++) {
+            // const element = array[index];
+            if (index % 2 == 1) {
+                console.log(index)
+            }
+        }
+        for (let index = 1; index <= 10; index++) {
+            let number =2
+            let multiple = 2 * index
+            console.log(`${number} * ${index} = ${multiple}`);
+            let display = document.createElement("div")
+            display.innerHTML = `${number} * ${index} = ${multiple}`
+            document.body.appendChild(display)
+            
+        }
+        // for (let index = 1; index <= 10; index++) {
+        //     const element = array[index];
+            
+        // }
+        // let result = document.createElement("div")
+        let container = document.createElement("div")
+         container.className = "container"
+        for (let index = 1; index <= 12; index++) {
+            let div = document.createElement("div")
+            div.className = "div"
+            for (let secondIndex = 1; secondIndex <= 12 ; secondIndex++) {
+                let answer = index * secondIndex
+                // console.log(`${index} * ${secondIndex} = ${answer}`);
+                let display = document.createElement("p")
+                display.innerText = `${index} * ${secondIndex} = ${answer}`
+                div.appendChild(display)
+            }
+            container.appendChild(div)
+        }
+        document.body.appendChild(container)
+        //two dimensional loop
+        // for (let i = 2; i <= 12; i++) {
+            
+        //     for (let j = 1; j <= 12; j++) {
+        //         console.log(`${i} * ${j} = ${i * j}`);
+        //         result.innerHTML += `${i} * ${j} = ${i * j}`
+        //         //template literal
+        //     }
+        // }
+        // do while loop - it will first check the code befor checking the condition
+        let num = 2
+        // do {
+        // console.log("yes");
+        // num++
+        // } while (num <= 4 );
+
+        while (num <= 4) {
+            console.log("no");
+            num++
+            
+        }
+
+        //while loop
+
+        //break statement is used to stop execution of a condition
+        //continue statement is used to stop once the condition is met and continue 
+        //create two input element and a button 
+
+    </script>
+</body>
+</html>
